@@ -1,0 +1,23 @@
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+  <!-- Navbar Brand-->
+  <a class="navbar-brand ps-3" href="/">Gerenciamento de Eventos</a>
+  <!-- Sidebar Toggle-->
+  <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+  <!-- Navbar Search-->
+  
+  <!-- Navbar-->
+  <ul class=" d-flex navbar-nav justify-content-end flex-grow-1 pe-3">
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li>
+                  <%= link_to 'Perfil', edit_user_registration_path, class: "dropdown-item" %>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                  <%= link_to 'Sair', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' }, class: "dropdown-item" %>
+              </li>
+          </ul>
+      </li>
+  </ul>
+</nav>
