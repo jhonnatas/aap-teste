@@ -2,11 +2,13 @@
   <div class="card-body">
       <div class="card-body d-flex justify-content-between">
           <span> <%= event.name %> </span>
+          <span> <%= event.local %> </span>
+          <span> <%= event.period_start %> </span>
+          <span> <%= event.period_end %> </span>
       </div>
   </div>
-  <div class="card-footer">
-      
-          <%= link_to 'Editar', edit_event_path(event), class: 'btn btn-danger' %>
-      
+  <div class="card-footer d-flex justify-content-between">
+    <%= link_to 'Detalhes', event_path(event), class: 'btn btn-info' %>
+    <%= link_to 'Editar', edit_event_path(event), class: 'btn btn-danger' %>
   </div>
 </div>
