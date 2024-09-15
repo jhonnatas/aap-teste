@@ -1,14 +1,15 @@
 class EventsController < ApplicationController
   PERMITED_PARAMS = [
-    :name, :local, :period_start, :email, :responsable,
+    :name, :local, :period_start, :period_end, :email, :responsable,
     :txtEnter, :txtAbout, :comission, :primaryColor,
     :secondaryColor, :status ].freeze
 
   before_action :authenticate_user!, except: %i[index show]
-  before_action :load_event, only: [:edit, :show, :update, :destroy]
+  before_action :load_event, only: [ :edit, :show, :update, :destroy ]
 
   def index
     @events = Event.order(period_start: :desc)
+    @registration = current_user.registrations.new if current_user
   end
 
   def new
@@ -18,7 +19,7 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.new event_params
     if @event.save
-      redirect_to events_path, notice: 'Evento salvo com sucesso'
+      redirect_to events_path, notice: "Evento salvo com sucesso"
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +27,7 @@ class EventsController < ApplicationController
 
   def update
     if current_user.events.update event_params
-      redirect_to events_path, notice: 'Evento atualizado com sucesso'
+      redirect_to events_path, notice: "Evento atualizado com sucesso"
     else
       render :new, status: :unprocessable_entity
     end
@@ -39,7 +40,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_path, notice: 'Evento excluido com sucesso'
+    redirect_to events_path, notice: "Evento excluido com sucesso"
   end
 
   private

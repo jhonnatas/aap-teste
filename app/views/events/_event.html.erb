@@ -9,6 +9,15 @@
   </div>
   <div class="card-footer d-flex justify-content-between">
     <%= link_to 'Detalhes', event_path(event), class: 'btn btn-info' %>
+    <% if current_user %>
+      <% unless ( current_user.events.include?(event) || event.user == current_user) %>
+        <%= simple_form_for [event, @registration] do |form| %>
+          <%= form.submit %>
+        <% end %>
+      <% else %>
+        <span class="badge rounded-pill bg-dark">Já Registrado</span>
+      <% end %>
+    <% end %>
     <%= link_to 'Editar', edit_event_path(event), class: 'btn btn-danger' %>
   </div>
 </div>

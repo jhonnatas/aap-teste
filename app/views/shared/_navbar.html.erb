@@ -8,10 +8,14 @@
   <ul class=" d-flex navbar-nav justify-content-end flex-grow-1 pe-3">
     <% if current_user %>
       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= current_user.email %> <i class="bi bi-person-circle"></i></a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <li>
                   <%= link_to 'Perfil', edit_user_registration_path, class: "dropdown-item" %>
+              </li>
+              
+              <li>
+                <%= link_to 'Minhas Inscrições', current_user_registrations_path, class: "dropdown-item" %>
               </li>
               <li><hr class="dropdown-divider" /></li>
               <li>

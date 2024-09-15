@@ -81,6 +81,7 @@ GEM
     brakeman (6.2.1)
       racc
     builder (3.3.0)
+    byebug (11.1.3)
     concurrent-ruby (1.3.4)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -283,6 +284,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   brakeman
+  byebug
   cssbundling-rails
   debug
   devise
