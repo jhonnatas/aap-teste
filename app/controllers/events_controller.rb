@@ -4,7 +4,7 @@ class EventsController < ApplicationController
     :txtEnter, :txtAbout, :comission, :primaryColor,
     :secondaryColor, :status ].freeze
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[index show]
   before_action :load_event, only: [:edit, :show, :update, :destroy]
 
   def index
