@@ -19,6 +19,9 @@ class RegistrationsController < ApplicationController
   end
 
   def destroy
+    @registration = Registration.for_user_and_event(current_user.id, params[:id]).first
+    @registration.destroy
+    redirect_to events_path, notice: 'Inscrição cancelada com sucesso!'
   end
 
   private

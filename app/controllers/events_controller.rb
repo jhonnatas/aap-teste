@@ -4,6 +4,8 @@ class EventsController < ApplicationController
     :txtEnter, :txtAbout, :comission, :primaryColor,
     :secondaryColor, :status ].freeze
 
+  layout "evento_show", only: [:show]
+
   before_action :authenticate_user!, except: %i[index show]
   before_action :load_event, only: [ :edit, :show, :update, :destroy ]
 
@@ -13,11 +15,12 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = current_user.events.new
+    @event = current_user.events.build
   end
 
   def create
-    @event = current_user.events.new event_params
+    @event = current_user.events.build event_params
+    debugger
     if @event.save
       redirect_to events_path, notice: "Evento salvo com sucesso"
     else
