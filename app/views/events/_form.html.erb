@@ -46,9 +46,11 @@
               <%= form.input :secondaryColor %>
             </div>
             <div class="col-12 col-md-6">
-              <%= form.input :status, collection: { 'Inscrições Abertas' : 'registrations_open' , 'Evento em andamento'
-                : 'event_in_progress' , 'Evento encerrado' : 'event_closed' , 'Cancelado' : 'cancelled' },
-                include_blank: false %>
+              <%= form.input :status, collection: { 'Inscrições Abertas': 'registrations_open',
+                                                    'Evento em andamento': 'event_in_progress',
+                                                    'Evento encerrado': 'event_closed',
+                                                    'Cancelado': 'cancelled' },
+              include_blank: false %>
             </div>
           </div>
       </div>

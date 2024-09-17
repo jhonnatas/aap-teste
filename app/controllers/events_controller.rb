@@ -4,7 +4,7 @@ class EventsController < ApplicationController
     :txtEnter, :txtAbout, :comission, :primaryColor,
     :secondaryColor, :status ].freeze
 
-  layout "evento_show", only: [:show]
+  layout "evento_show", only: [ :show ]
 
   before_action :authenticate_user!, except: %i[index show]
   before_action :load_event, only: [ :edit, :show, :update, :destroy ]
@@ -20,7 +20,6 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.events.build event_params
-    debugger
     if @event.save
       redirect_to events_path, notice: "Evento salvo com sucesso"
     else
@@ -32,7 +31,7 @@ class EventsController < ApplicationController
     if current_user.events.update event_params
       redirect_to events_path, notice: "Evento atualizado com sucesso"
     else
-      render :new, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
