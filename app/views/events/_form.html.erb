@@ -1,3 +1,4 @@
+<%= simple_form_for @event do |form| %>
 <div class="container">
   <div class="row mt-4">
     <div class="card">
@@ -5,7 +6,6 @@
         <h3 class="text-center font-weight-light my-4">Evento</h3>
       </div>
       <div class="card-body">
-        <%= simple_form_for @event do |form| %>
           <div class="row">
             <div class="col-12 col-md-6">
               <%= form.input :name %>
@@ -57,8 +57,8 @@
       <div class="card-footer d-flex justify-content-around">
           <%= link_to 'voltar' , events_path, class: 'btn btn-secondary' %>
           <%= form.button :button, class: 'btn btn-success' %>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <% end %>
