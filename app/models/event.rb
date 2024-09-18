@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :registrations
   has_many :users, through: :registrations
+  has_many :activities, dependent: :destroy
 
   enum status: { registrations_open: 'registrations_open',
         event_in_progress: 'event_in_progress', event_closed: 'event_closed',
