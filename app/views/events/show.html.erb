@@ -2,11 +2,11 @@
 <div class="row mt-5">
   <div class="col-md-8">
     <h1><%= @event.name %></h1>
-  
+
     <!-- Detalhes adicionais do evento -->
     <ul class="list-unstyled">
       <li><strong>Data de Início:</strong> <%= @event.period_start.strftime('%d/%m/%Y') %></li>
-      <li><strong>Data de Término:</strong> <%= @event.period_end.strftime('%d/%m/%Y') %></li>
+      <li><strong>Data de Término:</strong> <%= @event.period_end.nil? ? "Indefinido" : @event.period_end&.strftime('%d/%m/%Y') %></li>
       <li><strong>Local:</strong> <%= @event.local %></li>
     </ul>
   </div>
@@ -16,7 +16,7 @@
     <div class="sidebar">
       <h4>Informações</h4>
       <p>Aqui você pode adicionar detalhes sobre como se registrar, patrocinadores, ou outros links úteis.</p>
-      
+
       <!-- Botão de inscrição no evento -->
       <%= link_to 'Registrar-se', events_path, class: 'btn btn-primary btn-block' %>
       <%= link_to 'voltar' , events_path, class: 'btn btn-secondary' %>
