@@ -1,34 +1,40 @@
 <div class="container">
   <div class="row mt-4">
-    <div class="d-flex">
+    <div class="d-flex justify-content-around">
       <div class="flex-grow-1">
         <h3>Atividades do Evento <%= @event.name %></h3>
-        <p></p>
       </div>
+      <%= link_to 'Novo', new_event_activity_path, class: 'btn btn-primary' %>
     </div>
 
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered mt-3">
       <thead>
         <tr>
+          <th scope="col">Data</th>
           <th scope="col">Nome</th>
           <th scope="col">Título</th>
           <th scope="col">Palestrante</th>
           <th scope="col">Local</th>
-          <th scope="col">Horas de Certificado</th>
-          <th scope="col">Data de Início</th>
-          <th scope="col">Inscrições Abertas</th>
+          <th scope="col">Aberto para inscrições</th>
+          <th scope="col">Ações</th>
         </tr>
       </thead>
       <tbody>
         <% @activities.each do |activity| %>
           <tr>
+            <td><%=  l(activity.period_start, format: :short) %> </td>
             <td><%= activity.name %></td>
             <td><%= activity.title %></td>
             <td><%= activity.speaker %></td>
             <td><%= activity.local %></td>
-            <td><%= activity.certificate_hours %></td>
-            <td><%= l(activity.period_start, format: :short) %></td> <!-- l é um helper para formatar a data -->
             <td><%= activity.subscriptions_open ? 'Sim' : 'Não' %></td>
+            <td colspan="3" class="d-flex justify-content-between">
+              <%= link_to "Detalhes", event_activity_path(@event.id, activity), class: 'btn btn-info'  %>
+              <%= link_to "Editar", edit_event_activity_path(@event.id, activity), class: 'btn btn-warning'  %>
+              <%= link_to 'Excluir', event_activity_path(@event, activity)\
+                    , data: { turbo_confirm: 'Você tem certeza?', turbo_method: :delete }\
+                    , class: 'btn btn-danger' %>
+            </td>
           </tr>
         <% end %>
       </tbody>
