@@ -8,4 +8,6 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  enum role: { registered: "registered", manager: "manager", admin: "admin" }
 end
