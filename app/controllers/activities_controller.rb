@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-  layout "evento_show", only: [:index, :show ]
+  layout "evento_show", only: [ :index, :show ]
 
   PERMITED_PARAMS = [
     :name, :local, :period_start, :period_end, :title, :speaker,
@@ -15,10 +15,13 @@ class ActivitiesController < ApplicationController
   end
 
   def show;end
-  def edit;end
+  def edit
+    authorize @activity
+  end
 
   def new
     @activity = @event.activities.build
+    authorize @activity
   end
 
   def create
@@ -32,6 +35,7 @@ class ActivitiesController < ApplicationController
 
   def update
     if @activity.update activity_params
+      authorize @activity
       redirect_to event_activities_path, notice: "Atividade atualizada com sucesso!"
     else
       render :edit, status: :unprocessable_entity
@@ -39,6 +43,7 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
+    authorize @activity
     @activity.destroy
     redirect_to event_activities_path, notice: "Atividade Excluida com sucesso!"
   end

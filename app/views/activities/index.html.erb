@@ -1,9 +1,7 @@
 <div class="container">
   <div class="row mt-4">
     <div class="d-flex justify-content-around">
-      <div class="flex-grow-1">
         <h3>Atividades do Evento <%= @event.name %></h3>
-      </div>
       <%= link_to new_event_activity_path, class: 'btn btn-primary' do %>
         <i class="bi bi-plus-square"></i>
       <% end %>
