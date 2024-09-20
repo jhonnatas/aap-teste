@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_18_135813) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_20_142103) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +27,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_18_135813) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_activities_on_event_id"
+  end
+
+  create_table "activity_registrations", force: :cascade do |t|
+    t.string "status", default: "pending"
+    t.bigint "user_id", null: false
+    t.bigint "activity_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_activity_registrations_on_activity_id"
+    t.index ["user_id"], name: "index_activity_registrations_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -71,6 +81,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_18_135813) do
   end
 
   add_foreign_key "activities", "events"
+  add_foreign_key "activity_registrations", "activities"
+  add_foreign_key "activity_registrations", "users"
   add_foreign_key "events", "users"
   add_foreign_key "registrations", "events"
   add_foreign_key "registrations", "users"

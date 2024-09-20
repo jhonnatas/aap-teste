@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :events
   has_many :registrations
+  has_many :activity_registrations
+  has_many :activities, through: :activity_registrations
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

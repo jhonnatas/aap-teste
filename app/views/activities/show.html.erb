@@ -9,6 +9,7 @@
           <th scope="col">Local</th>
           <th scope="col">Carga Horária</th>
           <th scope="col">Data e Hora</th>
+          <th scope="col">Ações</th>
         </tr>
         <tr>
           <td>
@@ -29,8 +30,15 @@
           <td>
             <%= l(@activity.period_start, format: :short ) %> às <%=  @activity.period_end %>
           </td>
+          <td>
+            <% if @activity.activity_registrations.exists?(user: current_user) %>
+              <button class="btn btn-success">Inscrito</button>
+            <% else %>
+              <%= link_to 'Inscrever', event_activity_register_path(@event, @activity), data: { turbo_method: :post }, class: 'btn btn-warning' %>
+            <% end %>
+          </td>
         </tr>
     </table>
   </div>
-  <%= link_to 'Voltar', event_activities_path %>
+  <%= link_to 'voltar' , event_activities_path, class: 'btn btn-secondary' %>
 </div>

@@ -6,7 +6,9 @@
       </div>
 
       <div class="list-actions">
-          <%= link_to 'Novo', new_event_path, class: "btn btn-primary" %>
+          <%= link_to new_event_path, class: "btn btn-primary" do %>
+          <i class="bi bi-plus-square"></i>
+          <% end %>
       </div>
 
     </div>
