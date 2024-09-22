@@ -19,9 +19,13 @@
 
   <body>
     <div class="container">
-        <div class="banner-evento">
-          <img src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="Banner do Evento" class="img-fluid w-100" />
-        </div>
+        <% if @event.banner.attached? %>
+          <%= image_tag @event.banner, class: "banner-evento"  %>
+        <% else %>
+          <div class="banner-evento">
+            <img src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="Banner do Evento" class="img-fluid w-100" />
+          </div>
+        <% end %>
          <!-- Navegação -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light mt-4">
           <ul class="navbar-nav mr-auto d-flex justify-content-around w-100">

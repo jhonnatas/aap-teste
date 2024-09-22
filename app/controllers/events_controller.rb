@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   PERMITED_PARAMS = [
     :name, :local, :period_start, :period_end, :email, :responsable,
     :txtEnter, :txtAbout, :comission, :primaryColor,
-    :secondaryColor, :status ].freeze
+    :secondaryColor, :status, :banner ].freeze
 
   layout "evento_show", only: [ :show ]
 
