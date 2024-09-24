@@ -1,0 +1,97 @@
+<div class="banner-evento mb-5">
+  <img src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="Banner do Evento" class="img-fluid w-100 shadow-sm" />
+</div>
+<section class="container text-center mt-3 mb-5" id="sobre">
+  <h1 class="display-4">Bem-vindos ao SISEVE</h1>
+  <span class="lead">Sistema de Gerenciamento de Eventos do Campus Juazeiro do Norte</span>
+  <div class="row text-center mt-5 mb-5">
+    <div class="col-lg-4 col-md-6 mb-4">
+      <i class="bi bi-calendar-event display-4"></i>
+      <p class="mt-2">Eventos</p>
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4">
+      <i class="bi bi-calendar-event display-4"></i>
+      <p class="mt-2">Eventos</p>
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4">
+      <i class="bi bi-calendar-event display-4"></i>
+      <p class="mt-2">Eventos</p>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="bg-success mt-4 mb-4" id="estatisticas">
+  <h1 class="text-center pt-3 mb-4 text-light">Estatísticas</h1>
+</section>
+
+<section class="container mt-5" id="eventos">
+  <h1 class="text-center mb-5">Últimos Eventos Realizados</h1>
+  <div class="row">
+    <% @events.each do |event| %>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title"><%= event.name %></h5>
+            <p class="card-text"><%= event.local %></p>
+          </div>
+          <div class="card-footer text-center">
+            <a href="#" class="btn btn-primary">Saiba Mais</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<section class="fale-conosco bg-success py-5" id="fale-conosco">
+  <h1 class="text-center text-light mb-4">Fale Conosco</h1>
+  <div class="container">
+    <div class="row">
+      <!-- Formulário de Contato -->
+      <div class="col-lg-7 col-md-8 mb-4">
+        <form>
+          <div class="mb-3">
+            <label for="nome" class="form-label text-light">Nome</label>
+            <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label text-light">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Digite seu email">
+          </div>
+          <div class="mb-3">
+            <label for="assunto" class="form-label text-light">Assunto</label>
+            <input type="text" class="form-control" id="assunto" placeholder="Digite o assunto">
+          </div>
+          <div class="mb-3">
+            <label for="mensagem" class="form-label text-light">Mensagem</label>
+            <textarea class="form-control" id="mensagem" rows="5" placeholder="Digite sua mensagem"></textarea>
+          </div>
+          <button type="submit" class="btn btn-danger">Enviar</button>
+        </form>
+      </div>
+      <!-- Informações de Contato -->
+      <div class="col-lg-5 col-md-12 text-light">
+        <h4>Informações de Contato</h4>
+        <p>Email: contato@exemplo.com</p>
+        <p>Telefone: (99) 9999-9999</p>
+        <p>Endereço: Rua Exemplo, 123, Bairro Exemplo, Cidade</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-dark text-light py-4">
+  <div class="container text-center">
+    <div class="row justify-content-center">
+      <div class="col-md-4 d-flex justify-content-center mb-3">
+        <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-light me-3"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+    <p class="mb-0">&copy; <%= Date.today.year %> Todos os direitos reservados | CTI</p>
+  </div>
+</footer>
