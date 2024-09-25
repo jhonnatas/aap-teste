@@ -1,6 +1,11 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+#estatisticas, #fale-conosco{
+  background: radial-gradient(circle, rgba(24,136,44,1) 0%, rgba(2,83,16,1) 100%);
+  color: white;
+}
+
 i.btn{
   color: white;
 }
