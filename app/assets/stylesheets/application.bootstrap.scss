@@ -6,8 +6,26 @@
   color: white;
 }
 
+.card-header{
+  background-color: #5f933c;
+  color: white;
+}
+
+.absoluto{
+  position: absolute;
+  top:30%;
+}
+
 i.btn{
   color: white;
+}
+
+.btn-danger{
+  background-color: #a81416!important;
+}
+
+.btn-success{
+  background-color: #5f933c;
 }
 
 .btn-info{
