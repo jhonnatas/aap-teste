@@ -106,13 +106,15 @@
     <% @events.each do |event| %>
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
-          <img src="..." class="card-img-top" alt="...">
+          <% if event.banner.persisted? %>
+            <%= image_tag event.banner, class: "card-img-top" %>
+          <% end %>
           <div class="card-body text-center">
             <h5 class="card-title"><%= event.name %></h5>
             <p class="card-text"><%= event.local %></p>
           </div>
           <div class="card-footer text-center">
-            <a href="#" class="btn btn-primary">Saiba Mais</a>
+            <%= link_to "Saiba Mais", event_path(event), class: "btn btn-danger" %>
           </div>
         </div>
       </div>
@@ -170,7 +172,7 @@
           <label for="mensagem" class="form-label">Mensagem</label>
           <textarea class="form-control" id="mensagem" rows="5" placeholder="Digite sua mensagem"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Enviar</button>
+        <button type="submit" class="btn btn-danger w-100">Enviar</button>
       </form>
     </div>
   </div>

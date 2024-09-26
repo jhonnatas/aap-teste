@@ -21,7 +21,7 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build event_params
     if @event.save
-      @event.role = :manager unless current_user.admin?
+      current_user.role = :manager unless current_user.admin?
       redirect_to events_path, notice: "Evento salvo com sucesso"
     else
       render :new, status: :unprocessable_entity
@@ -31,7 +31,7 @@ class EventsController < ApplicationController
   def update
     authorize @event
     if current_user.events.update event_params
-      @event.role = :manager unless current_user.admin?
+      current_user.role = :manager unless current_user.admin?
       redirect_to events_path, notice: "Evento atualizado com sucesso"
     else
       render :edit, status: :unprocessable_entity
