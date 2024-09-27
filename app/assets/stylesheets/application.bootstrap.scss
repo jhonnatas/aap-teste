@@ -34,8 +34,15 @@
   background: url("banner.jpeg");
   min-height: 900px;
   color: #a81416;
-  font-weight: bolder;
-  font-size: larger;
+}
+
+.cta-section .display-4{
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.cta-section .lead{
+  font-weight: 500;
 }
 
 .card-header{
