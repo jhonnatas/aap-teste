@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "App Teste" %></title>
+    <title><%= content_for(:title) || "SISEVE" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -19,8 +19,9 @@
 
   <body>
     <div class="container">
+        
         <% if @event.banner.attached? %>
-          <%= image_tag @event.banner, class: "banner-evento"  %>
+          <%= image_tag @event.banner, class: "banner-evento" %>
         <% else %>
           <div class="banner-evento">
             <img src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="Banner do Evento" class="img-fluid w-100" />
