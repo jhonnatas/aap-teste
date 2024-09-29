@@ -26,6 +26,8 @@ gem "simple_form"
 gem "pundit"
 
 gem "active_storage_validations"
+
+gem "pagy", "~> 9.0"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

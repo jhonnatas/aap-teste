@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :users
     resources :events do
       resources :activities, except: [ :index ]
     end

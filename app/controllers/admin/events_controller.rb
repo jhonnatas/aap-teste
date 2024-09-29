@@ -9,7 +9,7 @@ module Admin
     before_action :load_event, only: [ :show, :edit, :update, :destroy ]
 
     def index
-      @events = Event.order(period_start: :desc)
+      @pagy, @events = pagy(Event.order(period_start: :desc))
       @registration = current_user.registrations.new if current_user
     end
 

@@ -9,7 +9,6 @@
               <%= image_tag event.banner, class: "card-img-top" %>
             <% end %>
           </div>
-          
           <div class="card-body text-center">
             <h6 class="card-title"><strong><%= event.name %></strong></h6>
             <p class="card-text mt-5"><%= event.local %></p>
@@ -20,5 +19,8 @@
         </div>
       </div>
     <% end %>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
   </div>
 </section>

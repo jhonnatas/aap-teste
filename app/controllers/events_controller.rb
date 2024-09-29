@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :load_event, only: [  :show  ]
 
   def index
-    @events = Event.order(period_start: :desc)
+    @pagy, @events = pagy(Event.order(period_start: :desc))
   end
 
 

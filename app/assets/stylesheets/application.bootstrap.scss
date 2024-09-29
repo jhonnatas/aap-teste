@@ -121,6 +121,21 @@ i.btn{
   --bs-btn-disabled-border-color: #dd5600;
 }
 
+.page-link{
+  color: #a81416;
+}
+
+.page-link:hover{
+  background-color: #a81416;
+  color: #fff;
+}
+
+.page-link.active, .active > .page-link {
+  color: white;
+  background-color: #a81416;
+  border-color: #a81416;
+}
+
 @media (max-width: 1920px) and (min-width: 1601px) {
 
   #background-img{
