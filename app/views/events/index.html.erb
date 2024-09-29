@@ -1,18 +1,24 @@
-<div class="container">
-  <div class="row mt-4">
-    <div class="d-flex">
-      <div class="flex-grow-1">
-        <h3>Lista de Eventos</h3>
+<section class="container mt-5" id="eventos">
+  <h1 class="text-center mb-5"> Eventos Cadastrados </h1>
+  <div class="row">
+    <% @events.each do |event| %>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <div>
+            <% if event.banner.persisted? %>
+              <%= image_tag event.banner, class: "card-img-top" %>
+            <% end %>
+          </div>
+          
+          <div class="card-body text-center">
+            <h6 class="card-title"><strong><%= event.name %></strong></h6>
+            <p class="card-text mt-5"><%= event.local %></p>
+          </div>
+          <div class="card-footer text-center">
+            <%= link_to "Saiba Mais", event_path(event), class: "btn btn-danger" %>
+          </div>
+        </div>
       </div>
-
-      <div class="list-actions">
-          <%= link_to new_event_path, class: "btn btn-primary" do %>
-          <i class="bi bi-plus-square"></i>
-          <% end %>
-      </div>
-
-    </div>
-
-    <%= render @events %>
+    <% end %>
   </div>
-</div>
+</section>

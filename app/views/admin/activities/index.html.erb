@@ -2,6 +2,9 @@
   <div class="row mt-4">
     <div class="d-flex justify-content-around">
         <h3>Atividades do Evento <%= @event.name %></h3>
+      <%= link_to new_admin_event_activity_path, class: 'btn btn-primary' do %>
+        <i class="bi bi-plus-square"></i>
+      <% end %>
     </div>
 
     <table class="table table-striped table-bordered mt-3">
@@ -25,17 +28,23 @@
             <td><%= activity.speaker %></td>
             <td><%= activity.local %></td>
             <td><%= activity.subscriptions_open ? 'Sim' : 'Não' %></td>
-            <td>
-              <div>
-                <%= link_to event_activity_path(@event.id, activity), class: 'btn btn-info me-2' do %>
-                  <i class="bi bi-eye"></i>
-                <% end %>
-              </div>
+            <td colspan="3" class="d-flex justify-content-between">
+              <%= link_to admin_event_activity_path(@event.id, activity), class: 'btn btn-info me-2' do %>
+                <i class="bi bi-eye"></i>
+              <% end %>
+              <%= link_to edit_admin_event_activity_path(@event.id, activity), class: 'btn btn-warning  me-2'  do %>
+                <i class="bi bi-pencil-square"></i>
+              <% end %>
+              <%= link_to admin_event_activity_path(@event, activity)\
+                    , data: { turbo_confirm: 'Você tem certeza?', turbo_method: :delete }\
+                    , class: 'btn btn-danger' do %>
+                    <i class="bi bi-trash"></i>
+              <% end %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
-  <%= link_to 'voltar' , event_path(@event), class: 'btn btn-secondary' %>
+  <%= link_to 'voltar' , events_path, class: 'btn btn-secondary' %>
 </div>

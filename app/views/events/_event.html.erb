@@ -13,22 +13,5 @@
     <%= link_to event_path(event), class: 'btn btn-info' do %>
     <i class="bi bi-eye"></i>
     <% end %>
-    <% if current_user %>
-      <% unless ( event.registrations.exists?(user: current_user) || event.user == current_user) %>
-        <%= simple_form_for [event, @registration] do |form| %>
-          <%= form.submit 'Inscrever', class: 'btn btn-success ' %>
-        <% end %>
-      <% else %>
-        <a href="#"><h4 class="mt-2 text-success"><i class="bi bi-check-lg "></i></h4></a>
-        <%= link_to event_registration_path(current_user, event.id)\
-                    , data: { turbo_confirm: 'Você tem certeza?', turbo_method: :delete }\
-                    , class: 'btn btn-danger  me-2' do %>
-            <i class="bi bi-x-lg"></i>
-        <% end %>
-      <% end %>
-    <% end %>
-    <%= link_to  edit_event_path(event), class: 'btn btn-warning  me-2' do %>
-      <i class="bi bi-pencil-square"></i>
-    <% end %>
   </div>
 </div>

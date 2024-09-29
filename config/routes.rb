@@ -2,15 +2,23 @@ Rails.application.routes.draw do
   get "home/index"
   devise_for :users
 
-  resources :events do
+  resources :events, only: %i[ index show ] do
     resources :registrations, only: %i[create destroy]
-    resources :activities do
+    resources :activities, only: %i[ index show ] do
       post "register", to: "activity_registrations#register"
     end
 
     member do
       get :registrations
     end
+  end
+
+  namespace :admin do
+    resources :events do
+      resources :activities, except: [ :index ]
+    end
+
+    root "dashboard#index"
   end
 
   root "home#index"

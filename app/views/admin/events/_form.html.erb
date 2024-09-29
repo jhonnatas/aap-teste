@@ -1,4 +1,4 @@
-<%= simple_form_for @event do |form| %>
+<%= simple_form_for [:admin, @event] do |form| %>
 <div class="container">
   <div class="row mt-4">
     <div class="card">
@@ -59,7 +59,7 @@
           </div>
       </div>
       <div class="card-footer d-flex justify-content-around">
-          <%= link_to 'voltar' , events_path, class: 'btn btn-secondary' %>
+          <%= link_to 'voltar' , admin_events_path, class: 'btn btn-secondary' %>
           <%= form.button :button, class: 'btn btn-success' %>
         </div>
       </div>

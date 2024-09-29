@@ -1,0 +1,74 @@
+<!-- Conteúdo do Evento -->
+<div class="row mt-5 mb-5">
+  <div class="offset-1 col-md-6">
+    <h1><%= @event.name %></h1>
+
+    <!-- Detalhes adicionais do evento -->
+    <ul class="list-unstyled">
+      <li><strong>Data de Início:</strong> <%= @event.period_start.strftime('%d/%m/%Y') %></li>
+      <li><strong>Data de Término:</strong> <%= @event.period_end.nil? ? "Indefinido" : @event.period_end&.strftime('%d/%m/%Y') %></li>
+      <li><strong>Local:</strong> <%= @event.local %></li>
+      <li><strong>Responsável:</strong> <%= @event.responsable %></li>
+      <li><strong>Email:</strong> <%= @event.user.email %></li>
+    </ul>
+  </div>
+
+  <!-- Barra lateral com informações adicionais ou links -->
+  <div class="col-md-4">
+    <div class="sidebar">
+      <h4>Informações</h4>
+      <p>Aqui você pode adicionar detalhes sobre como se registrar, patrocinadores, ou outros links úteis.</p>
+    </div>
+  </div>
+  
+  <div class="offset-1 col-md-9">
+    <div class="row mt-5">
+      <div class="d-flex justify-content-around">
+        <h3 class="text-center"> Atividades do Evento </h3>
+        <%= link_to new_admin_event_activity_path(@event), class: 'btn btn-primary' do %>
+          <i class="bi bi-plus-square"></i>
+        <% end %>
+      </div>
+  
+      <table class="table table-striped table-bordered mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Data</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Título</th>
+            <th scope="col">Palestrante</th>
+            <th scope="col">Local</th>
+            <th scope="col">Aberto para inscrições</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @event.activities.each do |activity| %>
+            <tr>
+              <td><%=  l(activity.period_start, format: :short) %> </td>
+              <td><%= activity.name %></td>
+              <td><%= activity.title %></td>
+              <td><%= activity.speaker %></td>
+              <td><%= activity.local %></td>
+              <td><%= activity.subscriptions_open ? 'Sim' : 'Não' %></td>
+              <td colspan="3" class="d-flex justify-content-between">
+                <%= link_to admin_event_activity_path(@event.id, activity), class: 'btn btn-info me-2' do %>
+                  <i class="bi bi-eye"></i>
+                <% end %>
+                <%= link_to edit_admin_event_activity_path(@event.id, activity), class: 'btn btn-warning  me-2'  do %>
+                  <i class="bi bi-pencil-square"></i>
+                <% end %>
+                <%= link_to admin_event_activity_path(@event, activity)\
+                      , data: { turbo_confirm: 'Você tem certeza?', turbo_method: :delete }\
+                      , class: 'btn btn-danger' do %>
+                      <i class="bi bi-trash"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= link_to 'voltar' , admin_events_path, class: 'btn btn-secondary' %>
+  </div>
+</div>

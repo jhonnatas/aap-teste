@@ -1,0 +1,45 @@
+<%= simple_form_for [:admin, @event, @activity] do |form| %>
+<div class="container">
+  <div class="row mt-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="text-center font-weight-light my-4">Atividade do <%= @event.name %></h3>
+      </div>
+      <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <%= form.input :name %>
+            </div>
+            <div class="col-12 col-md-6">
+              <%= form.input :title %>
+            </div>
+            <div class="col-12 col-md-6">
+              <%= form.input :local %>
+            </div>
+            <div class="col-12 col-md-6">
+              <%= form.input :speaker %>
+            </div>
+            <div class="col-12 col-md-3">
+              <%= form.input :period_start, html5: true %>
+            </div>
+            <div class="col-12 col-md-3">
+              <%= form.input :period_end, html5: true %>
+            </div>
+            <div class="col-12 col-md-3">
+              <%= form.input :certificate_hours %>
+            </div>
+            <div class="col-12 col-md-3">
+              <%= form.input :subscriptions_open, collection: { 'Sim': true,
+                                                                'Não': false },
+                                                                include_blank: false %>
+            </div>
+          </div>
+      </div>
+      <div class="card-footer d-flex justify-content-around">
+          <%= link_to 'voltar' , admin_event_path(@event), class: 'btn btn-secondary' %>
+          <%= form.button :button, class: 'btn btn-success' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>

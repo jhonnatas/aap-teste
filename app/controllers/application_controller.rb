@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include Pundit::Authorization
   allow_browser versions: :modern
 
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   rescue_from Pundit::NotAuthorizedError do
     redirect_to root_path, alert: "Você não tem autorização para essa ação"
