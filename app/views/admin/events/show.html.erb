@@ -10,6 +10,8 @@
       <li><strong>Local:</strong> <%= @event.local %></li>
       <li><strong>Responsável:</strong> <%= @event.responsable %></li>
       <li><strong>Email:</strong> <%= @event.user.email %></li>
+      <li><strong>Status:</strong> <%= @event.status %></li>
+      <li><strong>Comissão:</strong> <%= @event.comission %></li>
     </ul>
   </div>
 
@@ -17,7 +19,8 @@
   <div class="col-md-4">
     <div class="sidebar">
       <h4>Informações</h4>
-      <p>Aqui você pode adicionar detalhes sobre como se registrar, patrocinadores, ou outros links úteis.</p>
+      <p><%= @event.txtEnter %></p>
+      <p><%= @event.txtAbout %></p>
     </div>
   </div>
   
@@ -51,18 +54,20 @@
               <td><%= activity.speaker %></td>
               <td><%= activity.local %></td>
               <td><%= activity.subscriptions_open ? 'Sim' : 'Não' %></td>
-              <td colspan="3" class="d-flex justify-content-between">
-                <%= link_to admin_event_activity_path(@event.id, activity), class: 'btn btn-info me-2' do %>
+              <td>
+                <div class="d-flex justify-content-between">
+                  <%= link_to admin_event_activity_path(@event.id, activity), class: 'btn btn-info me-2' do %>
                   <i class="bi bi-eye"></i>
-                <% end %>
-                <%= link_to edit_admin_event_activity_path(@event.id, activity), class: 'btn btn-warning  me-2'  do %>
-                  <i class="bi bi-pencil-square"></i>
-                <% end %>
-                <%= link_to admin_event_activity_path(@event, activity)\
-                      , data: { turbo_confirm: 'Você tem certeza?', turbo_method: :delete }\
-                      , class: 'btn btn-danger' do %>
-                      <i class="bi bi-trash"></i>
-                <% end %>
+                  <% end %>
+                  <%= link_to edit_admin_event_activity_path(@event.id, activity), class: 'btn btn-warning  me-2'  do %>
+                    <i class="bi bi-pencil-square"></i>
+                  <% end %>
+                  <%= link_to admin_event_activity_path(@event, activity)\
+                        , data: { turbo_confirm: 'Você tem certeza?', turbo_method: :delete }\
+                        , class: 'btn btn-danger' do %>
+                        <i class="bi bi-trash"></i>
+                  <% end %>
+                </div>
               </td>
             </tr>
           <% end %>

@@ -26,17 +26,21 @@ module Admin
     def create
       @activity = @event.activities.build activity_params
       if @activity.save
-        redirect_to admin_event_activities_path, notice: "Atividade cadastrada com sucesso!"
+        flash[:notice] = "Atividade cadastrada com sucesso!"
+        redirect_to admin_event_path(@event)
       else
+        flash[:alert] = "Erro ao criar a atividade "
         render :new, status: :unprocessable_entity
       end
     end
 
     def update
+      authorize @activity
       if @activity.update activity_params
-        authorize @activity
-        redirect_to admin_event_activities_path, notice: "Atividade atualizada com sucesso!"
+        flash[:notice] = "Atividade atualizada com sucesso!"
+        redirect_to admin_event_path(@event)
       else
+        flash[:alert] = "Erro ao atualizar a atividade"
         render :edit, status: :unprocessable_entity
       end
     end
@@ -44,7 +48,8 @@ module Admin
     def destroy
       authorize @activity
       @activity.destroy
-      redirect_to admin_event_activities_path, notice: "Atividade Excluida com sucesso!"
+      flash[:notice] = "Atividade Excluida com sucesso!"
+      redirect_to admin_event_path(@event)
     end
 
     private

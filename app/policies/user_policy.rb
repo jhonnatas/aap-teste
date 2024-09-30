@@ -14,11 +14,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? || record.user_id == user.id
+    user.admin? || @record.id == user.id
   end
 
   def destroy?
-    user.admin? || record.user_id == user.id
+    user.admin? || @record.id == user.id
   end
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!

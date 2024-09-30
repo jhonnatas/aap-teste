@@ -1,34 +1,34 @@
- # This file should ensure the existence of records required to run the application in every environment (production,
- # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
- # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
- #
- # Example:
- #
- #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
- #     MovieGenre.find_or_create_by!(name: genre_name)
- #   end
+  # This file should ensure the existence of records required to run the application in every environment (production,
+  # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
+  # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+  #
+  # Example:
+  #
+  #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
+  #     MovieGenre.find_or_create_by!(name: genre_name)
+  #   end
 
- # db/seeds.rb
+  # db/seeds.rb
 
- # # Criando usuários
- # admin = User.create!(
- #   email: "admin@example.com",
- #   password: "123456",
- #   role: "admin"
- # )
+  # Criando usuários
+  admin = User.create!(
+    email: "admin@example.com",
+    password: "123456",
+    role: "admin"
+  )
 
- event_owner = User.second
-# User.create!(
-#   email: "dono@example.com",
-#   password: "123456",
-#   role: "manager"
-# )
+ # event_owner = User.second
+ event_owner = User.create!(
+   email: "dono@example.com",
+   password: "123456",
+   role: "manager"
+ )
 
-# participant = User.create!(
-#   email: "participante@example.com",
-#   password: "123456",
-#   role: "registered"
-# )# Criação de 15 eventos com imagem padrão da internet
+ participant = User.create!(
+   email: "participante@example.com",
+   password: "123456",
+   role: "registered"
+ )# Criação de 15 eventos com imagem padrão da internet
 
 Event.create!(
   [
@@ -292,7 +292,21 @@ Event.create!(
   ]
 )
 
-
+Event.all.each do |event|
+  # Criando 5 atividades para cada evento
+  5.times do |i|
+    Activity.create!(
+      name: "Atividade #{i + 1} para #{event.name}",
+      title: "Explorando Novas Fronteiras #{i + 1}",
+      period_start: DateTime.now + [ 1, 2, 3, 4 ].sample.days,
+      speaker: [ "Dr. Ana Silva", "Prof. João Souza", "Eng. Carlos Costa", "Maria Oliveira", "Cláudia Pereira" ].sample,
+      local: [ "Sala 101", "Auditório Principal", "Laboratório A", "Sala Virtual", "Praça de Eventos" ].sample,
+      certificate_hours: "#{[ 1, 2, 3, 4, 5 ].sample} horas",
+      subscriptions_open: [ true, false ].sample,
+      event: event # Associa a atividade ao evento correspondente
+    )
+  end
+end
 # # Criação de atividades para os eventos
 # Activity.create!(
 #   name: "Palestra sobre IA",

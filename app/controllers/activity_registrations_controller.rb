@@ -4,9 +4,11 @@ class ActivityRegistrationsController < ApplicationController
     @activity_registration = @activity.activity_registrations.build(user: current_user)
     @activity_registration.status = :confirmed
     if @activity_registration.save
-      redirect_to event_activities_path, notice: 'Inscrição realizada com sucesso.'
+      flash[:notice] = "Inscrição realizada com sucesso."
+      redirect_to event_activities_path
     else
-      redirect_to @activity, alert: 'Não foi possível realizar a inscrição.'
+      flash[:alert] =  "Não foi possível realizar a inscrição."
+      redirect_to @activity
     end
   end
 end

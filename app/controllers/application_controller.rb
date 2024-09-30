@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   # before_action :authenticate_user!
 
   rescue_from Pundit::NotAuthorizedError do
-    redirect_to root_path, alert: "Você não tem autorização para essa ação"
+    flash[:alert] = "Você não tem autorização para essa ação"
+    redirect_to root_path
   end
 end

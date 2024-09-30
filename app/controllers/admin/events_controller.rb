@@ -21,8 +21,10 @@ module Admin
       @event = current_user.events.build event_params
       if @event.save
         current_user.role = :manager unless current_user.admin?
-        redirect_to admin_events_path, notice: "Evento salvo com sucesso"
+        flash[:notice] = "Evento salvo com sucesso"
+        redirect_to admin_events_path
       else
+        flash[:alert] = "Erro ao criar o evento"
         render :new, status: :unprocessable_entity
       end
     end
@@ -31,8 +33,10 @@ module Admin
       authorize @event
       if @event.update event_params
         #      current_user.role = :manager unless current_user.admin?
-        redirect_to admin_events_path, notice: "Evento atualizado com sucesso"
+        flash[:notice] = "Evento atualizado com sucesso"
+        redirect_to admin_events_path
       else
+        flash[:alert] = "Erro ao atualizar o evento"
         render :edit, status: :unprocessable_entity
       end
     end
@@ -46,7 +50,8 @@ module Admin
     def destroy
       authorize @event
       @event.destroy
-      redirect_to admin_events_path, notice: "Evento excluido com sucesso"
+      flash[:notice] = "Evento excluido com sucesso"
+      redirect_to admin_events_path
     end
 
     private

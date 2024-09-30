@@ -21,8 +21,10 @@ module Admin
       @user = User.new user_params
       authorize @user
       if @user.save
-        redirect_to admin_users_path, notice: "Usuário cadastrado com sucesso!"
+        flash[:notice] = "Usuário cadastrado com sucesso!"
+        redirect_to admin_users_path
       else
+        flash[:alert] = "Erro ao criar o usuario"
         render :new, status: :unprocessable_entity
       end
     end
@@ -30,8 +32,10 @@ module Admin
     def update
       authorize @user
       if @user.update user_params
-        redirect_to admin_users_path, notice: "Usuário atualizado com sucesso!"
+        flash[:notice] = "Usuário atualizado com sucesso!"
+        redirect_to admin_users_path
       else
+        flash[:alert] = "Erro ao atualizar o usuario"
         render :new, status: :unprocessable_entity
       end
     end
@@ -39,7 +43,8 @@ module Admin
     def destroy
       authorize @user
       @user.destroy
-      redirect_to admin_users_path, notice: "Usuário excluido com sucesso!"
+      flash[:notice] = "Usuário excluido com sucesso!"
+      redirect_to admin_users_path
     end
 
     private
