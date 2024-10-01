@@ -31,10 +31,13 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light mt-4">
           <ul class="navbar-nav mr-auto d-flex justify-content-around w-100">
             <li class="nav-item">
-              <%= link_to 'Página Principal', event_path(@event), class: 'nav-link' %>
+              <%= link_to 'Página Principal', root_path(@event), class: 'nav-link' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Sobre o Evento', event_activities_path(@event),class: 'nav-link' %>
+              <%= link_to 'Sobre o Evento', event_path(@event), class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Cronograma de Atividades do Evento', event_activities_path(@event),class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <a href="/#fale-conosco" class="nav-link">Fale Consoco</a>

@@ -141,6 +141,7 @@ i.btn{
   #background-img{
     background: no-repeat url('back.jpeg') ;
     background-size: cover;
+    width: 100%;
     min-height: 1100px;
   }
 
@@ -156,7 +157,17 @@ i.btn{
     #background-img{
       background: no-repeat url('back.jpeg') ;
       background-size: cover;
+      width: 100%;
       min-height: 900px;
+    }
+
+    .absoluto{
+      position: absolute;
+      top: 30%;
+    }
+
+    .col-lg-8{
+      width: 56%;
     }
 
 }
@@ -166,12 +177,13 @@ i.btn{
   #background-img{
     background: no-repeat url('back.jpeg') ;
     background-size: cover;
+    width: 100%;
     min-height: 850px;
   }
 
   .absoluto{
     position: absolute;
-    top: 25%;
+    top: 30%;
   }
 
   .col-lg-7{
@@ -186,7 +198,17 @@ i.btn{
   #background-img{
     background: no-repeat url('back.jpeg') ;
     background-size: cover;
+    width: 100%;
     min-height: 800px;
+  }
+
+  .absoluto{
+    position: absolute;
+    top: 28%;
+  }
+
+  .col-lg-7{
+    width: 56%;
   }
 
 }
@@ -196,12 +218,13 @@ i.btn{
   #background-img{
     background: no-repeat url('back.jpeg') ;
     background-size: cover;
-    min-height: 780px;
+    width: 100%;
+    min-height: 100vh;
   }
 
   .absoluto{
     position: absolute;
-    top: 25%;
+    top: 28%;
   }
 
 }
@@ -211,6 +234,7 @@ i.btn{
   #background-img{
     background: no-repeat url('back.jpeg') ;
     background-size: cover;
+    width: 100%;
     min-height: 800px;
   }
 

@@ -15,18 +15,20 @@
   <div class="col-md-4">
     <div class="sidebar">
       <h4>Informações</h4>
-      <p>Aqui você pode adicionar detalhes sobre como se registrar, patrocinadores, ou outros links úteis.</p>
+      <p> <%= @event.txtEnter %></p>
       <div class="d-flex justify-content-between">
-        <% unless ( @event.registrations.exists?(user: current_user) || @event.user == current_user) %>
-          <%= simple_form_for [@event, @registration] do |form| %>
-            <%= form.submit 'Inscrever', class: 'btn btn-success ' %>
-          <% end %>
-        <% else %>
-          <a href="#"><h4 class="mt-2 text-success"><i class="bi bi-check-lg "></i></h4></a>
-          <%= link_to event_registration_path(current_user, @event.id)\
-                      , data: { turbo_confirm: 'Você tem certeza?', turbo_method: :delete }\
-                      , class: 'btn btn-danger  me-2' do %>
-              <i class="bi bi-x-lg"></i>
+        <% if current_user %>
+          <% unless ( @event.registrations.exists?(user: current_user) || @event.user == current_user) %>
+            <%= simple_form_for [@event, @registration] do |form| %>
+              <%= form.submit 'Inscrever', class: 'btn btn-success ' %>
+            <% end %>
+          <% else %>
+            <a href="#"><h4 class="mt-2 text-success"><i class="bi bi-check-lg "></i></h4></a>
+            <%= link_to event_registration_path(current_user, @event.id)\
+                        , data: { turbo_confirm: 'Você tem certeza?', turbo_method: :delete }\
+                        , class: 'btn btn-danger  me-2' do %>
+                <i class="bi bi-x-lg"></i>
+            <% end %>
           <% end %>
         <% end %>
         <%= link_to 'voltar' , events_path, class: 'btn btn-secondary' %>
