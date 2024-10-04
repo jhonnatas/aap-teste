@@ -33,14 +33,18 @@
             </div>
 
             <div class="col-12 col-md-6">
-              <%= form.input :txtEnter %>
-            </div>
-            <div class="col-12 col-md-6">
-              <%= form.input :txtAbout %>
+              <%= form.input :comission %>
             </div>
 
-            <div class="col-12 col-md-6">
-              <%= form.input :comission %>
+
+            <div class="col-12 col-md-12 mb-3" >
+              <%= form.label :txtEnter %>
+              <%= form.rich_text_area :txtEnter %>
+            </div>
+            
+            <div class="col-12 col-md-12 mb-3">
+              <%= form.label :txtAbout %>
+              <%= form.rich_text_area :txtAbout %>
             </div>
 
             <div class="col-12 col-md-6">

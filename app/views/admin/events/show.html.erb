@@ -4,23 +4,24 @@
     <h1><%= @event.name %></h1>
 
     <!-- Detalhes adicionais do evento -->
-    <ul class="list-unstyled">
-      <li><strong>Data de Início:</strong> <%= @event.period_start.strftime('%d/%m/%Y') %></li>
-      <li><strong>Data de Término:</strong> <%= @event.period_end.nil? ? "Indefinido" : @event.period_end&.strftime('%d/%m/%Y') %></li>
-      <li><strong>Local:</strong> <%= @event.local %></li>
-      <li><strong>Responsável:</strong> <%= @event.responsable %></li>
-      <li><strong>Email:</strong> <%= @event.user.email %></li>
-      <li><strong>Status:</strong> <%= @event.status %></li>
-      <li><strong>Comissão:</strong> <%= @event.comission %></li>
-    </ul>
+    <p><%= @event.txtEnter %></p>
+    <p><%= @event.txtAbout %></p>
   </div>
 
   <!-- Barra lateral com informações adicionais ou links -->
   <div class="col-md-4">
     <div class="sidebar">
       <h4>Informações</h4>
-      <p><%= @event.txtEnter %></p>
-      <p><%= @event.txtAbout %></p>
+      <ul class="list-unstyled">
+        <li><strong>Data de Início:</strong> <%= @event.period_start.strftime('%d/%m/%Y') %></li>
+        <li><strong>Data de Término:</strong> <%= @event.period_end.nil? ? "Indefinido" : @event.period_end&.strftime('%d/%m/%Y') %></li>
+        <li><strong>Local:</strong> <%= @event.local %></li>
+        <li><strong>Responsável:</strong> <%= @event.responsable %></li>
+        <li><strong>Email:</strong> <%= @event.user.email %></li>
+        <li><strong>Status:</strong> <%= @event.status %></li>
+        <li><strong>Comissão:</strong> <%= @event.comission.truncate(150) %></li>
+      </ul>
+     
     </div>
   </div>
   
