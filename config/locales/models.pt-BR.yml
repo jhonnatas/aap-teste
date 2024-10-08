@@ -1,0 +1,49 @@
+pt-BR:
+  models:
+    models: &model_names
+      property: Imóvel
+      property_situation: Situação do Imóvel
+      property_standard_item: Característica do Imóvel
+      property_type: Tipo de Imóvel
+      user: Usuário
+    attributes: &model_attributes
+      property:
+        contract_type: Tipo do Contrato
+        title: Resumo
+        description: Descrição
+        address_zip_code: CEP
+        address_state: Estado
+        address_city: Cidade
+        address_neighborhood: Bairro
+        address_line_1: Endereço
+        address_number: Número
+        address_line_2: Complemento
+        size: Tamanho
+        price: Valor do Imóvel
+        tax: IPTU
+        condominium_fee: Taxa de Condomínio
+        bedroom_count: Número de Quartos
+        bathroom_count: Número de Banheiros
+      property_type:
+        name: Nome
+      property_situation:
+        name: Nome
+      property_standard_item:
+        name: Nome
+      user:
+        name: Nome
+        email: E-mail
+        password: Senha
+        password_confirmation: Confirme sua Senha
+
+  activerecord:
+    models:
+      <<: *model_names
+    attributes:
+      <<: *model_attributes
+
+  activemodel:
+    models:
+      <<: *model_names
+    attributes:
+      <<: *model_attributes
