@@ -1,4 +1,4 @@
-<nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
+<nav class="sb-topnav navbar navbar-expand navbar-light bg-light d-print-none">
   <!-- Navbar Brand-->
   <a class="navbar-brand ps-3 d-flex align-items-center" href="/">
     <%= image_tag "if-logo.png", height: "60" , class: "d-inline-block align-text-top" %>
@@ -11,6 +11,7 @@
   <ul class="d-flex navbar-nav justify-content-end flex-grow-1 pe-3">
     <li>
       <a href="#eventos" class="nav-link">EVENTOS</a>
+      <%= link_to 'LOGIN', user_session_path , class: "nav-link me-5" %>
     </li>
     <li>
       <a href="#sobre" class="nav-link">SOBRE</a>

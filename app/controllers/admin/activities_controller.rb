@@ -2,11 +2,11 @@ module Admin
   class ActivitiesController < BaseController
     PERMITED_PARAMS = [
       :name, :local, :period_start, :period_end, :title, :speaker,
-      :certificate_hours, :subscriptions_open ].freeze
+      :certificate_hours, :subscriptions_open, :event_id ].freeze
 
     before_action :authenticate_user!, except: %i[index show]
     before_action :load_event
-    before_action :load_activity, only: %i[ edit show update destroy]
+    before_action :load_activity, only: %i[ edit show update destroy activity_presence_list ]
 
 
     # def index
@@ -14,6 +14,7 @@ module Admin
     # end
 
     def show;end
+    
     def edit
       authorize @activity
     end
@@ -50,6 +51,11 @@ module Admin
       @activity.destroy
       flash[:notice] = "Atividade Excluida com sucesso!"
       redirect_to admin_event_path(@event)
+    end
+
+    def activity_presence_list      
+      @activity
+      @activity_presence_list = @activity.users # Busca os usuário inscritos em uma atividade específica  
     end
 
     private
