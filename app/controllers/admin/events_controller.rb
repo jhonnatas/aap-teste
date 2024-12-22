@@ -6,7 +6,7 @@ module Admin
       :secondaryColor, :status, :banner ].freeze
 
     before_action :authenticate_user!, except: %i[ index ]
-    before_action :load_event, only: [ :show, :edit, :update, :destroy ]
+    before_action :load_event, only: [ :show, :edit, :update, :destroy , :presence_list]
 
     def index
       @pagy, @events = pagy(Event.order(period_start: :desc))
@@ -32,7 +32,7 @@ module Admin
     def update
       authorize @event
       if @event.update event_params
-        #      current_user.role = :manager unless current_user.admin?
+        # current_user.role = :manager unless current_user.admin?
         flash[:notice] = "Evento atualizado com sucesso"
         redirect_to admin_events_path
       else
@@ -54,6 +54,10 @@ module Admin
       redirect_to admin_events_path
     end
 
+    def presence_list
+      @pagy, @presence_list = pagy(@event.users)
+    end
+
     private
 
     def event_params
@@ -62,6 +66,6 @@ module Admin
 
     def load_event
       @event = Event.find(params[:id])
-    end
+    end   
   end
 end

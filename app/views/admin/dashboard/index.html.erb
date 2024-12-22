@@ -1,5 +1,14 @@
 <div class="container">
+ <%= render "cards" %>
   <div class="row mt-4">
-    DASHBOARD
+     <% @events.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.local %></td>
+        <td><%= l(event.period_start, format: :long) %></td>
+        <td><%= event.period_end.nil? ? "" : l(event.period_end, format: :long) %></td>
+      <% end %>
   </div>
 </div>
+
+ 

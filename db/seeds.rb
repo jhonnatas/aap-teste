@@ -28,8 +28,9 @@
    email: "participante@example.com",
    password: "123456",
    role: "registered"
- )# Criação de 15 eventos com imagem padrão da internet
-
+ )
+ 
+# Criação de 15 eventos com imagem padrão da internet
 Event.create!(
   [
     {
@@ -307,6 +308,20 @@ Event.all.each do |event|
     )
   end
 end
+
+# Criando 10 usuários em cada evento cadastrado acima.
+Event.all.each do |event|
+  10.times do |i|  
+    participant = User.create(   
+      email: Faker::Internet.email,  
+      password: '123456',
+      role: "registered"  
+    )    
+    # Cada usuário se registra no evento  
+    Registration.create(user: participant, event: event)  
+  end
+end   
+
 # # Criação de atividades para os eventos
 # Activity.create!(
 #   name: "Palestra sobre IA",
