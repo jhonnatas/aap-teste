@@ -6,7 +6,8 @@ module Admin
 
     before_action :authenticate_user!, except: %i[index show]
     before_action :load_event
-    before_action :load_activity, only: %i[ edit show update destroy activity_presence_list ]
+    before_action :load_activity, only: %i[ edit show update destroy activity_presence_list activity_presence_list_pdf]
+    before_action :load_activity_presence_list, only: %i[ activity_presence_list_pdf ]
 
 
     # def index
@@ -58,6 +59,15 @@ module Admin
       @activity_presence_list = @activity.users # Busca os usuário inscritos em uma atividade específica  
     end
 
+    def activity_presence_list_pdf
+      respond_to do |format|  
+        format.pdf do  
+          pdf = AlunosPdf.new(@activity_presence_list)  
+          send_data pdf.render, filename: "Lista de prenseça da atividade #{@activity.title}.pdf", type: 'application/pdf', disposition: 'inline'  
+        end  
+      end  
+    end
+
     private
 
     def load_event
@@ -66,6 +76,10 @@ module Admin
 
     def load_activity
       @activity = @event.activities.find(params[:id])
+    end
+
+    def load_activity_presence_list
+      @activity_presence_list = @activity.users
     end
 
     def activity_params

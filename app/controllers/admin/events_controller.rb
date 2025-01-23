@@ -56,7 +56,7 @@ module Admin
 
     def presence_list
       @pagy, @presence_list = pagy(@event.users)
-    end
+    end    
 
     private
 

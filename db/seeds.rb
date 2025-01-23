@@ -317,8 +317,11 @@ Event.all.each do |event|
       password: '123456',
       role: "registered"  
     )    
-    # Cada usuário se registra no evento  
-    Registration.create(user: participant, event: event)  
+    # Cada usuário se registra em um evento 
+    Registration.create!(user: participant, event: event) 
+    
+    # Cadastrando usuários na atividade "Java Spring Boot Camp id 6" do evento "Java Spring Boot Camp id 13" apenas para teste da lista de presença em pdf
+    ActivityRegistration.create!(status: "confirmed", user_id: participant.id, activity_id: 6 )
   end
 end   
 

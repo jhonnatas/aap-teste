@@ -10,8 +10,7 @@
   <!-- Navbar-->
   <ul class="d-flex navbar-nav justify-content-end flex-grow-1 pe-3">
     <li>
-      <a href="#eventos" class="nav-link">EVENTOS</a>
-      <%= link_to 'LOGIN', user_session_path , class: "nav-link me-5" %>
+      <a href="#eventos" class="nav-link">EVENTOS</a>      
     </li>
     <li>
       <a href="#sobre" class="nav-link">SOBRE</a>
@@ -24,18 +23,19 @@
     </li>
     <% if current_user %>
       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= current_user.email %> <i class="bi bi-person-circle"></i></a>
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= current_user.email %> <i class="bi bi-person-circle"></i></a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <li>
-                  <%= link_to 'Perfil', edit_user_registration_path, class: "dropdown-item" %>
-              </li>
-              <li>
-                <%= link_to 'Gerenciar Eventos', admin_root_path, class: "dropdown-item" %>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <%= link_to 'Sair', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } , class: "dropdown-item" %>
-              </li>
+            <li>
+              <%= link_to 'Perfil', edit_user_registration_path, class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to 'Gerenciar Eventos', admin_root_path, class: "dropdown-item" %>
+            </li>
+            <li>
+              <hr class="dropdown-divider" /></li>
+            <li>
+              <%= link_to 'Sair', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } , class: "dropdown-item" %>
+            </li>
           </ul>
       </li>
     <% else %>
