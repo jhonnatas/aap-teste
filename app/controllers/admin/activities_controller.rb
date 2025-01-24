@@ -55,14 +55,13 @@ module Admin
     end
 
     def activity_presence_list      
-      @activity
-      @activity_presence_list = @activity.users # Busca os usuário inscritos em uma atividade específica  
+      @activity_presence_list = @activity.users 
     end
 
     def activity_presence_list_pdf
       respond_to do |format|  
         format.pdf do  
-          pdf = AlunosPdf.new(@activity_presence_list)  
+          pdf = PresenceListPdf.new(@activity_presence_list, @activity)  
           send_data pdf.render, filename: "Lista de prenseça da atividade #{@activity.title}.pdf", type: 'application/pdf', disposition: 'inline'  
         end  
       end  
