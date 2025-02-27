@@ -1,9 +1,10 @@
 FactoryBot.define do
   factory :event do
-    name { 'Conference' }
-    local { 'New York' }
+    name { Faker::Name.name   }
+    local { Faker::Address.city }
     period_start { Date.today }
     period_end { Date.today + 2.days }
-    association :user
+    banner { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/banner.jpeg'), 'image/jpeg') }
+    user
   end
 end
