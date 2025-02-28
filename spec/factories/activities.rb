@@ -8,6 +8,6 @@ FactoryBot.define do
     period_end { DateTime.now + 2.hours }
     certificate_hours { '2' }
     subscriptions_open { true }
-    association :event
+    event
   end
 end

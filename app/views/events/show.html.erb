@@ -27,7 +27,7 @@
             <% end %>
           <% else %>
             <a href="#"><h4 class="mt-2 text-success"><i class="bi bi-check-lg "></i></h4></a>
-            <%= link_to event_registration_path(current_user, @event.id)\
+            <%= link_to event_registration_path(@event.id)\
                         , data: { turbo_confirm: 'Você tem certeza?', turbo_method: :delete }\
                         , class: 'btn btn-danger  me-2' do %>
                 <i class="bi bi-x-lg"></i>
