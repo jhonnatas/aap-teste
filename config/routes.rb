@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  
   get "home/index"
-  
+
   devise_for :users
 
   resources :events, only: %i[ index show ] do
@@ -11,7 +10,7 @@ Rails.application.routes.draw do
     end
 
     member do
-      get :registrations     
+      get :registrations
     end
   end
 
@@ -19,14 +18,14 @@ Rails.application.routes.draw do
     resources :users
     resources :events do
       member do
-        get :presence_list        
+        get :presence_list
       end
-      resources :activities, except: [ :index ] do 
+      resources :activities, except: [ :index ] do
         member do
           get :activity_presence_list
         end
      end
-    end   
+    end
 
     root "dashboard#index"
   end

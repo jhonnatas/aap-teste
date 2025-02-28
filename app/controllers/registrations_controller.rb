@@ -1,4 +1,5 @@
 class RegistrationsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @registrations = current_user.registrations.all
   end
@@ -19,9 +20,9 @@ class RegistrationsController < ApplicationController
   end
 
   def destroy
-    @registration = Registration.for_user_and_event(current_user.id, params[:id]).first
+    @registration = Registration.for_user_and_event(current_user.id, params[:event_id]).first
     @registration.destroy
-    redirect_to events_path, notice: 'Inscrição cancelada com sucesso!'
+    redirect_to events_path, notice: "Inscrição cancelada com sucesso!"
   end
 
   private
