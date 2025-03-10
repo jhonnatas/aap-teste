@@ -69,6 +69,11 @@
                         <i class="bi bi-trash"></i>
                   <% end %>
                 </div>
+                  <td>
+                  <%= link_to activity_presence_list_admin_event_activity_path(@event.id, activity), class: 'btn btn-warning btn-sm me-2' do %>
+                    <i class="bi bi-pencil-square">Lista de presença</i>
+                  <% end %>
+                  </td>
               </td>
             </tr>
           <% end %>

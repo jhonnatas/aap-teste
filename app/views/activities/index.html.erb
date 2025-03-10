@@ -30,11 +30,11 @@
             <td><%= activity.subscriptions_open ? 'Sim' : 'Não' %></td>
             <td>
               <div>
-                <%= link_to event_activity_path(@event.id, activity), class: 'btn btn-info me-2' do %>
+                <%= link_to event_activity_path(@event.id, activity.id), class: 'btn btn-info me-2' do %>
                   <i class="bi bi-eye"></i>
                 <% end %>
               </div>
-            </td>
+            </td>           
           </tr>
         <% end %>
       </tbody>

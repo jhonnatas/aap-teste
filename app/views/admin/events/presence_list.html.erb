@@ -1,0 +1,76 @@
+<div id="content-wrapper" class="d-flex flex-column mt-3">      
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Lista de Frequência</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Evento: <%= @event.name %></h6>
+      <p class="card-text"></p>    
+    </div>
+  </div>        
+  
+  <div class="row mt-2">        
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Data</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><%= l(@event.period_start, format: :long) %></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total de inscritos</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @event.registrations.count %></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <% if !@presence_list.any? %>  
+    <div class="alert alert-warning" role="alert">Não há registros ainda.</div>
+  <% else %>
+    <div class="table-responsive">
+      <table class="table table-hover">      
+        <thead>     
+          <tr>
+            <th scope="col">N.° Inscrição</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Atividade / Lote</th>
+            <th scope="col">Assinatura</th>
+          </tr>
+        </thead>
+        <tbody>      
+          <% @presence_list.each do |user|   %>
+            <tr>
+              <th scope="row"><%= user.id %></th>
+              <td><%= user.email %></td>
+              <td>Atividade aqui</td>
+              <td></td>
+            </tr>     
+          <% end %>
+        </tbody>
+      </table>
+       <div class="d-flex justify-content-center">
+        <%== pagy_bootstrap_nav(@pagy) %>
+      </div>
+    </div>
+  <% end %> 
+</div>  
+
+
+
