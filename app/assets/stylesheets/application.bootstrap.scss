@@ -1,5 +1,6 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import 'actiontext.css';
 
 #sidebar-wrapper {
   width: 14%;
@@ -136,6 +137,9 @@ i.btn{
   border-color: #a81416;
 }
 
+textarea.form-control{
+  height: auto;
+}
 @media (max-width: 1920px) and (min-width: 1601px) {
 
   #background-img{
@@ -272,4 +276,5 @@ i.btn{
     position: absolute;
     top: 1%;
   }
-}@import 'actiontext.css';
+}
+
