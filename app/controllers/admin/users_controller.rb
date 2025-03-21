@@ -14,7 +14,7 @@ module Admin
 
     def new
       @user = User.new
-      authorize @user
+      authorize current_user
     end
 
     def create
