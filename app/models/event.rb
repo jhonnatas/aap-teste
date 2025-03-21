@@ -11,6 +11,6 @@ class Event < ApplicationRecord
   enum status: { registrations_open: "registrations_open", event_in_progress: "event_in_progress", event_closed: "event_closed",
   cancelled: "cancelled" }
 
-  validates :name, :local, :period_start, presence: true
+  validates :name, :local, :period_start, :period_end, presence: true
   validates :banner, attached: true, content_type: [ :png, :jpg, :jpeg ]
 end

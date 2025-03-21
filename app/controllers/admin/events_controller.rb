@@ -3,7 +3,7 @@ module Admin
     PERMITED_PARAMS = [
       :name, :local, :period_start, :period_end, :email, :responsable,
       :txtEnter, :txtAbout, :comission, :primaryColor,
-      :secondaryColor, :status, :banner ].freeze
+      :secondaryColor, :status, :banner, :user_id].freeze
 
     before_action :authenticate_user!, except: %i[ index ]
     before_action :load_event, only: [ :show, :edit, :update, :destroy, :presence_list ]
@@ -19,6 +19,7 @@ module Admin
 
     def create
       @event = current_user.owned_events.build event_params
+
       if @event.save
         current_user.role = :manager unless current_user.admin?
         flash[:notice] = "Evento salvo com sucesso"
