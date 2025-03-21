@@ -6,7 +6,7 @@ module Admin
       :secondaryColor, :status, :banner ].freeze
 
     before_action :authenticate_user!, except: %i[ index ]
-    before_action :load_event, only: [ :show, :edit, :update, :destroy , :presence_list]
+    before_action :load_event, only: [ :show, :edit, :update, :destroy, :presence_list ]
 
     def index
       @pagy, @events = pagy(Event.order(period_start: :desc))
@@ -14,11 +14,11 @@ module Admin
     end
 
     def new
-      @event = current_user.events.build
+      @event = current_user.owned_events.build
     end
 
     def create
-      @event = current_user.events.build event_params
+      @event = current_user.owned_events.build event_params
       if @event.save
         current_user.role = :manager unless current_user.admin?
         flash[:notice] = "Evento salvo com sucesso"
@@ -66,6 +66,6 @@ module Admin
 
     def load_event
       @event = Event.find(params[:id])
-    end   
+    end
   end
 end
