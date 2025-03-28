@@ -5,7 +5,7 @@ module Admin
       :txtEnter, :txtAbout, :comission, :primaryColor,
       :secondaryColor, :status, :banner ].freeze
 
-    before_action :authenticate_user!, except: %i[ index ]
+    before_action :authenticate_user!
     before_action :load_event, only: [ :show, :edit, :update, :destroy, :presence_list ]
 
     def index
@@ -15,10 +15,12 @@ module Admin
 
     def new
       @event = current_user.owned_events.build
+      authorize @event
     end
 
     def create
       @event = current_user.owned_events.build event_params
+      authorize @event
       if @event.save
         current_user.role = :manager unless current_user.admin?
         flash[:notice] = "Evento salvo com sucesso"
@@ -32,7 +34,7 @@ module Admin
     def update
       authorize @event
       if @event.update event_params
-        # current_user.role = :manager unless current_user.admin?
+        current_user.role = :manager unless current_user.admin?
         flash[:notice] = "Evento atualizado com sucesso"
         redirect_to admin_events_path
       else

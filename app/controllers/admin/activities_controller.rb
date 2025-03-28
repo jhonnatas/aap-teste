@@ -14,7 +14,7 @@ module Admin
     # end
 
     def show;end
-    
+
     def edit
       authorize @activity
     end
@@ -53,9 +53,9 @@ module Admin
       redirect_to admin_event_path(@event)
     end
 
-    def activity_presence_list      
+    def activity_presence_list
       @activity
-      @activity_presence_list = @activity.users # Busca os usuário inscritos em uma atividade específica  
+      @activity_presence_list = @activity.users # Busca os usuário inscritos em uma atividade específica
     end
 
     private
