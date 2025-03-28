@@ -13,6 +13,10 @@ class EventPolicy < ApplicationPolicy
     user.admin? || record.user_id == user.id
   end
 
+  def create?
+    user.admin? || user.manager?
+  end
+
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     # def resolve
