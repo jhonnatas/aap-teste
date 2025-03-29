@@ -9,6 +9,10 @@ class UserPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def edit?
+    user.admin? || @record.id == user.id
+  end
+
   def create?
     user.admin?
   end
