@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :events do
+      resources :registrations
       member do
         get :presence_list
       end
