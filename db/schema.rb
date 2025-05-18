@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_04_130447) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_16_223439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,6 +77,19 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_04_130447) do
     t.index ["user_id"], name: "index_activity_registrations_on_user_id"
   end
 
+  create_table "certificates", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.string "certificate_number"
+    t.integer "hours", default: 0
+    t.datetime "issued_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["certificate_number"], name: "index_certificates_on_certificate_number", unique: true
+    t.index ["event_id"], name: "index_certificates_on_event_id"
+    t.index ["user_id"], name: "index_certificates_on_user_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "local"
@@ -122,6 +135,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_04_130447) do
   add_foreign_key "activities", "events"
   add_foreign_key "activity_registrations", "activities"
   add_foreign_key "activity_registrations", "users"
+  add_foreign_key "certificates", "events"
+  add_foreign_key "certificates", "users"
   add_foreign_key "events", "users"
   add_foreign_key "registrations", "events"
   add_foreign_key "registrations", "users"

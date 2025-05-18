@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   has_many :users, through: :registrations
   has_many :activities, dependent: :destroy
   has_one_attached :banner
-
+  has_many :certificates, dependent: :destroy
   has_rich_text :txtEnter
   has_rich_text :txtAbout
 
@@ -16,6 +16,7 @@ class Event < ApplicationRecord
   validate :period_start_cannot_be_in_past, :period_end_must_be_after_period_start
 
   private
+
 
   # Prevents past period_start
   def period_start_cannot_be_in_past

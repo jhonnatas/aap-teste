@@ -1,13 +1,16 @@
 module Admin::RegistrationsHelper
   def user_selection_field(form)
     if form.object.persisted?
-      # Para registros existentes, mostra o email do usuário associado
-      user_email = User.find(form.object.user_id).email
-      form.input :user_id, as: :string, input_html: { value: user_email, readonly: true }
+      user = User.find(form.object.user_id)
+      
+      label_tag("E-mail do usuário:", nil ,class: 'mb-2') +# Exibe o email do usuário para visualização ao invés de edição
+      content_tag(:input, nil, :type => 'text', :value => "#{user.email}", :readonly => true, :class => 'form-control') +
+      # Campo hidden para manter o user_id original
+      form.hidden_field(:user_id)
     else
-      # Para novos registros, mostra um select de usuários
-      form.input :user_id, collection: @users.map { |user| [user.email, user.id] },
-                          include_blank: false
+      label_tag("E-mail do usuário:", nil ,class: 'mb-2') +
+      # Fornece uma dropdown list de usuários para novos registros
+      form.collection_select(:user_id, @users, :id, :email, { prompt: "Selecione um usuário" }, { class: "form-control" })
     end
   end
 end
