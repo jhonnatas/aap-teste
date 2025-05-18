@@ -4,12 +4,12 @@ module Admin
     before_action :load_event
     before_action :load_registration, only: [:show, :edit, :update, :destroy]
     def index
-      @registrations = @event.registrations
+      @registrations = @event.registrations.order(:id)
     end
 
     def new
       @registrations = @event.registrations
-      @users = User.where.not(id: @registrations.pluck(:user_id)) if @registrations.any?
+      @users = User.where.not(id: @registrations.pluck(:user_id)).order(:email) if @registrations.any?
       @registration = Registration.new
     end
     def create
@@ -46,7 +46,7 @@ module Admin
     end
 
     def registration_params
-      params.require(:registration).permit(:event_id, :user_id, :status) 
+      params.require(:registration).permit(:event_id, :user_id, :status)
     end
   end
 end

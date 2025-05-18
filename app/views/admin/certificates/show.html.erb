@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="row mt-4">
+
+    <h1>Certificamos a participação <%= "#{@certificate.user.email}" %> no evento <%=  "#{@certificate.event.name}" %></h1>
+    <h2>Data de emissão: <%= "#{t(@certificate.created_at)}" %></h2>
+  </div>
+  <%= link_to 'voltar' , admin_events_path, class: 'btn btn-secondary' %>
+</div>

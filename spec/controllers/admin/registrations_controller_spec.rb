@@ -136,7 +136,7 @@ module Admin
       let!(:event) { create(:event) }
       let!(:user) { create(:user) }
       let!(:registration) { create(:registration, event: event, user: user) }
-      let(:updated_registration_params) { attributes_for(:registration, event: event, user_id: user.id) }
+      let(:updated_registration_params) { attributes_for(:registration, event: event, user_id: user.id, status: :confirmed) }
 
       context 'without authentication' do
           it "returns a login page response" do
