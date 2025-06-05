@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_16_223439) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_05_202316) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_16_223439) do
     t.string "local"
     t.datetime "period_start"
     t.datetime "period_end"
-    t.string "certificate_hours"
+    t.integer "certificate_hours"
     t.boolean "subscriptions_open"
     t.bigint "event_id", null: false
     t.datetime "created_at", null: false
