@@ -19,17 +19,14 @@ Rails.application.routes.draw do
     resources :users
     resources :events do
       resources :registrations
-      resources :certificates, only: %i[ index show ] do
-        member do
-          get :download
-        end
-      end
+      resources :certificates, only: %i[ index show ]
       member do
         get :presence_list
       end
       resources :activities, except: [ :index ] do
         member do
           get :activity_presence_list
+          get :activity_presence_list_pdf, defaults: { format: :pdf }
         end
      end
     end

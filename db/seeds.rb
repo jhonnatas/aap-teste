@@ -10,6 +10,8 @@
 
   # db/seeds.rb
 
+  puts "Loading data, please be patient..."
+
   # Criando usuários
   admin = User.create!(
     email: "admin@example.com",
@@ -293,31 +295,9 @@ Event.create!(
   ]
 )
 
-Event.all.each do |event|
-  # Criando 5 atividades para cada evento
-  5.times do |i|
-    period_start = DateTime.now + [1, 2, 3, 4].sample.days
-period_end = period_start + [1, 2, 3, 4].sample.days
-
-# Ou se for em um hash/factory:
-
-    Activity.create!(
-      name: "Atividade #{i + 1} para #{event.name}",
-      title: "Explorando Novas Fronteiras #{i + 1}",
-      period_start: period_start,
-      period_end: period_end,
-      speaker: [ "Dr. Ana Silva", "Prof. João Souza", "Eng. Carlos Costa", "Maria Oliveira", "Cláudia Pereira" ].sample,
-      local: [ "Sala 101", "Auditório Principal", "Laboratório A", "Sala Virtual", "Praça de Eventos" ].sample,
-      certificate_hours: "#{[ 1, 2, 3, 4, 5 ].sample}",
-      subscriptions_open: [ true, false ].sample,
-      event: event # Associa a atividade ao evento correspondente
-    )
-  end
-end
-
 # Criando 10 usuários em cada evento cadastrado acima.
 Event.all.each do |event|
-  10.times do |i|
+  80.times do |i|
     participant = User.create(
       email: Faker::Internet.email,
       password: '123456',
@@ -325,6 +305,35 @@ Event.all.each do |event|
     )
     # Cada usuário se registra no evento
     Registration.create(user: participant, event: event)
+  end
+end
+
+Event.all.each do |event|
+  # Criando 5 atividades para cada evento
+  period_start = DateTime.now + [1, 2, 3, 4].sample.days
+  period_end = period_start + [1, 2, 3, 4].sample.days
+  5.times do |i|
+    Activity.create!(
+      name: "Atividade #{i + 1} para #{event.name}",
+      title: "Explorando Novas Fronteiras #{i + 1}",
+      period_start: period_start,
+      period_end: period_end,
+      speaker: [ "Dr. Ana Silva", "Prof. João Souza", "Eng. Carlos Costa", "Maria Oliveira", "Cláudia Pereira" ].sample,
+      local: [ "Sala 101", "Auditório Principal", "Laboratório A", "Sala Virtual", "Praça de Eventos" ].sample,
+      certificate_hours: "#{[ 1, 2, 3, 4, 5 ].sample} horas",
+      subscriptions_open: [ true, false ].sample,
+      event: event # Associa a atividade ao evento correspondente
+    )
+  end
+end
+
+Activity.all.each do |activity|
+  # Criando 80 inscrições para cada atividade
+  80.times do |i|
+    participant = User.all.sample
+
+    # Cada usuário se registra na atividade
+    ActivityRegistration.create(user: participant, activity: activity)
   end
 end
 
