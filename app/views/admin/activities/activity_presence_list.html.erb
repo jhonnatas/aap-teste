@@ -41,6 +41,8 @@
     </div>
   </div>
 
+<%= link_to 'Gerar PDF', activity_presence_list_pdf_admin_event_activity_path(@event), class: 'btn btn-primary', target: '_blank', format: :pdf %>
+
   <% if !@activity_presence_list.any? %>
     <div class="alert alert-warning" role="alert">Ainda não há inscritos.</div>
   <% else %>
