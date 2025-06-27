@@ -7,7 +7,7 @@ class CertificateGeneratorService
   end
 
   def generate_pdf
-    Prawn::Document.new(page_size: [ 842, 595 ], margin: 50) do |pdf| # A4 landscape
+    pdf = Prawn::Document.new(page_size: [ 842, 595 ], margin: 50) do |pdf| # A4 landscape
       add_background_image(pdf)
       add_header(pdf)
       add_content(pdf)
@@ -15,6 +15,7 @@ class CertificateGeneratorService
       add_footer(pdf)
       add_border(pdf)
     end
+    pdf
   end
 
   private
@@ -25,7 +26,7 @@ class CertificateGeneratorService
 
     begin
       # Pega o caminho do arquivo
-      if Rails.env.development?
+      if Rails.env.development? || Rails.env.test?
         # Desenvolvimento: arquivo local
         image_path = @certificate.event.banner.blob.service.path_for(@certificate.event.banner.key)
       else
@@ -79,6 +80,15 @@ class CertificateGeneratorService
   end
 
   def add_activities(pdf)
+
+    # --- INÍCIO DO BLOCO DE DEPURAÇÃO ---
+    puts "\n--- [DEBUG] DENTRO DO SERVIÇO ---"
+    puts "ID do Certificado: #{@certificate.id}"
+    puts "Atividades no serviço: #{@certificate.attended_activities.map(&:name).inspect}"
+    puts "Total de atividades no serviço: #{@certificate.attended_activities.count}"
+    puts "--- FIM DO BLOCO DE DEPURAÇÃO ---\n"
+    # --- FIM DO BLOCO DE DEPURAÇÃO ---
+
     return if @certificate.attended_activities.empty?
     pdf.span(700, position: :center) do
     pdf.font_size 12
