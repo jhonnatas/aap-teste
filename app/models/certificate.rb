@@ -15,8 +15,8 @@ class Certificate < ApplicationRecord
 
   def attended_activities
     Activity.joins(:activity_registrations)
-            .where(activity_registrations: { user: user, status: 'confirmed' })
-            .where(event: event)
+            .where(activity_registrations: { user_id: self.user_id, status: 'confirmed' })
+            .where(activities: { event_id: self.event_id })
   end
 
   private
