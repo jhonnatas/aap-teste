@@ -9,13 +9,13 @@ class Certificate < ApplicationRecord
   def calculate_hours
     # Assuming you have a method to calculate hours based on activities
     self.hours = user.activity_registrations.joins(:activity)
-                      .where(activities: { event_id: event.id }, status: 'confirmed')
-                      .sum('activities.certificate_hours')
+                      .where(activities: { event_id: event.id }, status: "confirmed")
+                      .sum("activities.certificate_hours")
   end
 
   def attended_activities
     Activity.joins(:activity_registrations)
-            .where(activity_registrations: { user: user, status: 'confirmed' })
+            .where(activity_registrations: { user: user, status: "confirmed" })
             .where(event: event)
   end
 
